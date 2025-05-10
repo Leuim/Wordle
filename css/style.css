@@ -45,6 +45,10 @@ body {
     color: rgb(65, 142, 65);
 }
 
+#game-feedback {
+    text-align: center;
+}
+
 #word-board {
     display: flex;
     flex-flow: column wrap;

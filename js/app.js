@@ -33,34 +33,45 @@ let currentCol = 0
 
 // cached event listeners
 const keys = document.querySelectorAll('.key-button')
+const gameFeedback = document.querySelector('#game-feedback')
 // functions
 const handleKeyPress = (keyValue) =>{
     if(currentCol < 5){
-        if (keyValue == 'DELETE'){
+        if (keyValue === 'DELETE'){
             console.log('Delete');
             deleteLetter()
-        } else if (keyValue == 'ENTER'){
+        } else if (keyValue === 'ENTER'){
             console.log('Submit');
             submitGuess()
         } else{
             const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
-            console.log(`#tile-${currentRow}-${currentCol}`)
+            gameBoard[currentRow][currentCol] = keyValue
+            console.log(gameBoard[currentRow][currentCol])
             tile.textContent = keyValue
             currentCol++
         }  
     } 
 }
 const deleteLetter = () =>{
-
+    if( currentCol > 0){
+        currentCol--
+        const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
+        tile.textContent = ''
+    }
 }
 const submitGuess = () =>{
-    
+    if(currentCol > 5){
+
+    } else {
+        // console.log('test');
+        gameFeedback.textContent = 'Please Enter a 5 letters'
+    }
 }
 // eventlisteners
 keys.forEach(key => {
     key.addEventListener('click', () => {
         const keyValue = key.innerText 
-        console.log(keyValue);
+        // console.log(keyValue);
         handleKeyPress(keyValue)
     })
 });
