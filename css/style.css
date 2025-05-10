@@ -1,72 +1,102 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(133, 133, 133);
 }
-#main-nav{
+
+#main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: aliceblue;
 }
-#navigation{
+
+#navigation {
     display: flex;
     gap: 10px;
     list-style: none;
     font-weight: bold;
-    color:rgb(47, 58, 47)
+    color: rgb(47, 58, 47)
 }
 
-#logo{
-    height: 10vh;
-    display: flex;
+#logo {
+    height: 50px;
+    width: 50px;
+    margin: 0 5px 0 0;
 }
 
-#main-title{
+#main-title {
     font-size: 46px;
-    color:whitesmoke;
+    color: whitesmoke;
     text-align: center;
     -webkit-text-stroke: 1px rgb(0, 0, 0);
     text-shadow: 2px 5px 0 #000;
 }
-#title-yellow{
-    color:rgb(209, 209, 22)
+
+#title-yellow {
+    color: rgb(209, 209, 22)
 }
-#title-green{
-    color:rgb(65, 142, 65);
+
+#title-green {
+    color: rgb(65, 142, 65);
 }
-#word-board{
+
+#word-board {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
 }
-.row{
+
+.word-row {
     display: flex;
 }
-.letter-card{
+
+.letter-card {
     border: 2px solid #000;
     background-color: rgb(110, 110, 110);
     padding: 25px;
     margin: 2px;
-    height: 10vh;
-    width: 5vw;
+    height: 100px;
+    width: 100px;
+    text-transform: capitalize;
 }
 
-@media (max-width:1000px) {
-    body{
-        /* background-color: #000; */
-    }
-    .letter-card{
-        width:1vw;
-        height: 5vh;
-    }
-    #logo {
-        display: none;
-    }
-    
+#keyboard-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.key-button {
+    padding: 30px;
+    margin: 15px 0 0 0;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: 2px 2px 0 #000;
+}
+
+.key-button:hover {
+    background-color: #252525;
+    color: white;
+}
+
+#delete-button {
+    margin-left: 5px;
+}
+
+#enter-button {
+    margin-right: 5px;
+}
+
+#delete-button:hover {
+    background-color: rgb(224, 56, 56);
+}
+
+#enter-button:hover {
+    background-color: rgb(59, 102, 138);
 }
