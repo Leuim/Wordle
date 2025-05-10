@@ -42,14 +42,19 @@ body{
 }
 #word-board{
     display: flex;
-    
-    justify-content: center;
+    flex-flow: column wrap;
 }
 .row{
     display: flex;
-    background-color: aliceblue;
-    height:10vh;
-    /* justify-content: center;
-     */
+    gap: 5px;
+    justify-content: center;
     align-items: center;
+}
+.letter-card{
+    border: 2px solid #000;
+    background-color: rgb(110, 110, 110);
+    padding: 25px;
+    margin: 2px 0;
+    height: 10vh;
+    width: 10vw;
 }
