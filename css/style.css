@@ -64,6 +64,13 @@ body {
     height: 100px;
     width: 100px;
     text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 46px;
+    font-weight: bold;
+    text-shadow: 2px 2px 0 #000;
+    color: #ffffff;
 }
 
 #keyboard-container {
@@ -78,11 +85,14 @@ body {
     border: 1px solid #000;
     border-radius: 5px;
     box-shadow: 2px 2px 0 #000;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .key-button:hover {
     background-color: #252525;
     color: white;
+    cursor: pointer;
 }
 
 #delete-button {
