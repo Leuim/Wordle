@@ -26,7 +26,9 @@ const wordList = [
     "daisy", "elbow", "frail", "gleam", "haunt", "irony", "jelly", "knife", "latch", "mimic",
     "niece", "oxide", "plaza", "quirk", "risky", "sloop", "tweak", "unzip", "vixen", "witty"
 ]
-const randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+// const randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+const randomWord = 'knock'
+
 let currentRow = 0
 let gamestate = false
 let currentCol = 0
@@ -35,42 +37,57 @@ let currentCol = 0
 const keys = document.querySelectorAll('.key-button')
 const gameFeedback = document.querySelector('#game-feedback')
 // functions
-const handleKeyPress = (keyValue) =>{
-    if(currentCol < 5){
-        if (keyValue === 'DELETE'){
-            console.log('Delete');
-            deleteLetter()
-        } else if (keyValue === 'ENTER'){
-            console.log('Submit');
-            submitGuess()
-        } else{
-            const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
-            gameBoard[currentRow][currentCol] = keyValue
-            console.log(gameBoard[currentRow][currentCol])
-            tile.textContent = keyValue
-            currentCol++
-        }  
-    } 
+const handleKeyPress = (keyValue) => {
+    if (keyValue === 'DELETE') {
+        // console.log('Delete');
+        deleteLetter()
+    } else if (keyValue === 'ENTER') {
+        // console.log('Submit');
+        submitGuess()
+    } else if (currentCol < 5) {
+        const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
+        gameBoard[currentRow][currentCol] = keyValue
+        // console.log(gameBoard[currentRow][currentCol])
+        tile.textContent = keyValue
+        currentCol++
+        // console.log(currentCol);
+    }
 }
-const deleteLetter = () =>{
-    if( currentCol > 0){
+const deleteLetter = () => {
+    if (currentCol > 0) {
         currentCol--
         const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
         tile.textContent = ''
     }
 }
-const submitGuess = () =>{
-    if(currentCol > 5){
-
-    } else {
-        // console.log('test');
-        gameFeedback.textContent = 'Please Enter a 5 letters'
+const validateGuess = (guess) => {
+    if (randomWord === guess) {
+        console.log('word is correct');
     }
 }
+const submitGuess = () => {
+    if (currentCol < 5) {
+        gameFeedback.textContent = 'Please enter a five letters word' 
+        return 
+    }
+    const guess = gameBoard[currentRow].join('')
+    console.log("Guess submitted:", guess)
+    validateGuess(guess)
+    if (currentRow < 5) {
+        currentRow++
+        currentCol = 0
+    } else {
+        console.log("Game over")
+        gameFeedback.textContent = 'Game over'
+    }
+};
+
+
+
 // eventlisteners
 keys.forEach(key => {
     key.addEventListener('click', () => {
-        const keyValue = key.innerText 
+        const keyValue = key.innerText
         // console.log(keyValue);
         handleKeyPress(keyValue)
     })
