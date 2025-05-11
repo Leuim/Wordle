@@ -36,7 +36,10 @@ let currentCol = 0
 // cached event listeners
 const keys = document.querySelectorAll('.key-button')
 const gameFeedback = document.querySelector('#game-feedback')
+
 // functions
+
+
 const handleKeyPress = (keyValue) => {
     if (keyValue === 'DELETE') {
         // console.log('Delete');
@@ -49,8 +52,13 @@ const handleKeyPress = (keyValue) => {
         gameBoard[currentRow][currentCol] = keyValue
         // console.log(gameBoard[currentRow][currentCol])
         tile.textContent = keyValue
+        const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
+        tileShadow.style.backgroundColor = 'rgb(173, 173, 173)'
         currentCol++
         // console.log(currentCol);
+    } else if(currentCol >= 5){
+        // console.log('what are you trying to add VOID?');
+        gameFeedback.textContent = 'Press Enter to make a guess!'
     }
 }
 const deleteLetter = () => {
@@ -58,6 +66,11 @@ const deleteLetter = () => {
         currentCol--
         const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
         tile.textContent = ''
+        const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
+        tileShadow.style.backgroundColor = 'rgb(110, 110, 110)'
+    } else {
+        // console.log('what are you trying to delete VOID?');
+        gameFeedback.textContent = 'You have nothing to delete!'
     }
 }
 const validateGuess = (guess) => {
