@@ -63,7 +63,7 @@ body {
 
 .letter-card {
     border: 2px solid #000;
-    background-color: rgb(110, 110, 110);
+    background-color: rgb(167, 167, 167);
     padding: 25px;
     margin: 2px;
     height: 100px;
@@ -78,10 +78,21 @@ body {
     color: #ffffff;
 }
 
+/* .absent{
+    background-color: rgb(50, 50, 50);
+}
+.correct{
+    background-color: rgb(2, 171, 7);
+}
+.present{
+    background-color: rgb(189, 202, 3);
+} */
+
 #keyboard-container {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    margin: 10px 0;
 }
 
 .key-button {
