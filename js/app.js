@@ -184,15 +184,20 @@ const validateGuess = (guess) => {
     guessLetters.forEach((letter, index) =>{
             const tile = document.querySelector(`#tile-${currentRow}-${index}`)
         if (letter === randomWordLetters[index]){
-            similartyArray[index]
+            // similartyArray[index]
             console.log(`#tile-${currentRow}-${index}`)
             tile.style.backgroundColor = 'green'
             // tile.classList.add('correct')
         } else if (randomWordLetters.includes(letter)){
             console.log(randomWordLetters.includes(letter));
             tile.style.backgroundColor = 'yellow'
-        } else {
+        } else if (!randomWordLetters.includes(letter)){
             tile.style.backgroundColor = 'black'
+            keys.forEach(key =>{
+                if (key.textContent === letter){
+                    key.setAttribute("disabled", "")
+                }
+            })
         }       
     })
 }
