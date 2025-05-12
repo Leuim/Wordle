@@ -138,7 +138,8 @@ let currentCol = 0
 // cached event listeners
 const keys = document.querySelectorAll('.key-button')
 const gameFeedback = document.querySelector('#game-feedback')
-
+const showTutorialButton = document.querySelector('#show-tutorial')
+const tutorialCard = document.querySelector('#tutorial-card')
 // functions
 console.log('random word is:', randomWord);
 const handleKeyPress = (keyValue) => {
@@ -246,6 +247,9 @@ const gameEnd = (similartyArray) => {
         gamestate = false;
     }
 }
+const showTutorial = () =>{
+    tutorialCard.style.display = 'block'
+}
 // eventlisteners
 keys.forEach(key => {
     key.addEventListener('click', () => {
@@ -254,3 +258,4 @@ keys.forEach(key => {
         handleKeyPress(keyValue)
     })
 });
+showTutorialButton.addEventListener('click', showTutorial)
