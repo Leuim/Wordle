@@ -14,7 +14,7 @@ const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', '']]
-const guessWords = ['BROWN', 'BRAOD']
+const guessWords = ['BROWN', 'BROAD', 'WNROB', 'QUICK', 'BROOM', 'NOBLE']
 // const guessWords = [
 //     "CATCH", "ABOUT", "BRACE", "ARISE", "BRICK", "CLIMB", "BLOOD", "CEASE", "APPLE", "BONUS",
 //     "BASIC", "BEGIN", "BATCH", "ARISE", "CHEST", "BEARD", "CHECK", "AGENT", "BELLY", "BEAST",
@@ -132,7 +132,7 @@ const guessWords = ['BROWN', 'BRAOD']
 const wordList = ['BROWN']
 const randomWord = wordList[Math.floor(Math.random() * wordList.length)]
 let currentRow = 0
-let gamestate = false
+let gamestate = true
 let currentCol = 0
 
 // cached event listeners
@@ -142,25 +142,27 @@ const gameFeedback = document.querySelector('#game-feedback')
 // functions
 console.log('random word is:', randomWord);
 const handleKeyPress = (keyValue) => {
+    if (gamestate) {
         gameFeedback.textContent = ''
-    if (keyValue === 'DELETE') {
-        // console.log('Delete');
-        deleteLetter()
-    } else if (keyValue === 'ENTER') {
-        // console.log('Submit');
-        submitGuess()
-    } else if (currentCol < 5) {
-        const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
-        gameBoard[currentRow][currentCol] = keyValue
-        // console.log(gameBoard[currentRow][currentCol])
-        tile.textContent = keyValue
-        const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
-        tileShadow.style.backgroundColor = 'rgb(110, 110, 110)'
-        currentCol++
-        // console.log(currentCol);
-    } else if (currentCol >= 5) {
-        // console.log('what are you trying to add VOID?');
-        gameFeedback.textContent = 'Press Enter to make a guess!'
+        if (keyValue === 'DELETE') {
+            // console.log('Delete');
+            deleteLetter()
+        } else if (keyValue === 'ENTER') {
+            // console.log('Submit');
+            submitGuess()
+        } else if (currentCol < 5) {
+            const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
+            gameBoard[currentRow][currentCol] = keyValue
+            // console.log(gameBoard[currentRow][currentCol])
+            tile.textContent = keyValue
+            const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
+            tileShadow.style.backgroundColor = 'rgb(110, 110, 110)'
+            currentCol++
+            // console.log(currentCol);
+        } else if (currentCol >= 5) {
+            // console.log('what are you trying to add VOID?');
+            gameFeedback.textContent = 'Press Enter to make a guess!'
+        }
     }
 }
 const deleteLetter = () => {
@@ -178,28 +180,40 @@ const deleteLetter = () => {
 const validateGuess = (guess) => {
     const guessLetters = guess.split('')
     const randomWordLetters = randomWord.split('')
-    // const similartyArray = ['absent','absent','absent','absent','absent']
-    console.log(guessLetters);
-    console.log(randomWordLetters);
-    guessLetters.forEach((letter, index) =>{
-            const tile = document.querySelector(`#tile-${currentRow}-${index}`)
-        if (letter === randomWordLetters[index]){
-            // similartyArray[index]
-            console.log(`#tile-${currentRow}-${index}`)
+    const similartyArray = ['absent', 'absent', 'absent', 'absent', 'absent']
+    // console.log(guessLetters);
+    // console.log(randomWordLetters);
+    guessLetters.forEach((letter, index) => {
+        const tile = document.querySelector(`#tile-${currentRow}-${index}`)
+        if (letter === randomWordLetters[index]) {
+            similartyArray[index] = 'correct'
+            // console.log(`#tile-${currentRow}-${index}`)
             tile.style.backgroundColor = 'green'
-            // tile.classList.add('correct')
-        } else if (randomWordLetters.includes(letter)){
-            console.log(randomWordLetters.includes(letter));
-            tile.style.backgroundColor = 'yellow'
-        } else if (!randomWordLetters.includes(letter)){
-            tile.style.backgroundColor = 'black'
-            keys.forEach(key =>{
-                if (key.textContent === letter){
-                    key.setAttribute("disabled", "")
+            keys.forEach(key => {
+                if (key.textContent === letter) {
+                    key.style.backgroundColor = 'rgb(2, 171, 7)'
                 }
             })
-        }       
+        } else if (randomWordLetters.includes(letter)) {
+            similartyArray[index] = 'present'
+            // console.log(randomWordLetters.includes(letter));
+            tile.style.backgroundColor = 'yellow'
+            keys.forEach(key => {
+                if (key.textContent === letter) {
+                    key.style.backgroundColor = 'rgb(189, 202, 3)'
+                }
+            })
+        } else if (!randomWordLetters.includes(letter)) {
+            similartyArray[index] = 'absent'
+            tile.style.backgroundColor = 'black'
+            keys.forEach(key => {
+                if (key.textContent === letter) {
+                    key.style.backgroundColor = 'rgb(167, 167, 167)'
+                }
+            })
+        }
     })
+    gameEnd(similartyArray)
 }
 const submitGuess = () => {
     if (currentCol < 5) {
@@ -213,15 +227,25 @@ const submitGuess = () => {
         if (currentRow < 5) {
             currentRow++
             currentCol = 0
-        } else {
-            console.log("Game over")
-            gameFeedback.textContent = 'Game over'
         }
     } else {
         gameFeedback.textContent = 'Word is not in the game'
     }
-};
-
+}
+const gameEnd = (similartyArray) => {
+    if (similartyArray.every(similarty => {
+        return similarty === 'correct'
+    }
+    )) {
+        console.log('you win');
+        gameFeedback.textContent = `Congrats you won in ${currentRow + 1} attempt`;
+        gamestate = false;
+    } else if (currentRow === 5) {
+        console.log('you lose');
+        gameFeedback.textContent = `You consumed all your attempts. The correct word is ${randomWord.toLowerCase()}`;
+        gamestate = false;
+    }
+}
 // eventlisteners
 keys.forEach(key => {
     key.addEventListener('click', () => {

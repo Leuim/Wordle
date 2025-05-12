@@ -61,6 +61,9 @@ body {
     display: flex;
 }
 
+h2 {
+    text-align: center;
+}
 .letter-card {
     border: 2px solid #000;
     background-color: rgb(167, 167, 167);
