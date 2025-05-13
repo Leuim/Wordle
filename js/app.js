@@ -134,14 +134,21 @@ const gameEnd = (similartyArray) => {
         gamestate = false;
     }
 }
-const handleKeyboardClick = (event) =>{
-    const verfiedKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    console.log(event.key)
-    if(verfiedKeys.includes(event.key)){
-        handleKeyPress()
-    } else if()
+const handleKeyboardClick = (event) => {
+    if (gamestate) {
+        const verfiedKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        const pressedKey = event.key.toUpperCase()
+        console.log(pressedKey)
+        if (verfiedKeys.includes(pressedKey)) {
+            handleKeyPress(pressedKey)
+        } else if (pressedKey === 'BACKSPACE') {
+            deleteLetter()
+        } else if (pressedKey === 'ENTER') {
+            submitGuess()
+        }
+    }
 }
-const showTutorial = () =>{
+const showTutorial = () => {
     tutorialCard.style.display = 'block'
 }
 // eventlisteners
@@ -152,5 +159,5 @@ keys.forEach(key => {
         handleKeyPress(keyValue)
     })
 });
-showTutorialButton.addEventListener('click', showTutorial) 
+showTutorialButton.addEventListener('click', showTutorial)
 document.addEventListener('keydown', handleKeyboardClick)
