@@ -173,13 +173,14 @@ h2 {
 }
 
 #exit-tutorial {
-    padding: 5px;
     border: 1px solid #ffffff;
     background-color: rgb(107, 107, 107);
     color: #ffffff;
     border-radius: 30%;
     width: 25px;
+    height: 25px;
     transition: background-color 0.5s ease;
+    line-height: 0;
     font-weight: bold;
 }
 
