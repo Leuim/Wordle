@@ -14,8 +14,8 @@ body {
     align-items: center;
     background-color: rgb(24, 24, 24);
     color: rgb(255, 255, 255);
-    border-bottom:1px solid rgb(255, 255, 255);
-    
+    border-bottom: 1px solid rgb(82, 82, 82);
+
 }
 
 #navigation {
@@ -67,8 +67,10 @@ body {
 h2 {
     text-align: center;
 }
+
 .letter-card {
     border: 2px solid #000;
+    border-radius: 5px;
     background-color: rgb(167, 167, 167);
     padding: 25px;
     margin: 2px;
@@ -81,7 +83,7 @@ h2 {
     font-size: 46px;
     font-weight: bold;
     text-shadow: 2px 2px 0 #000;
-    transition:background-color 0.5s ease;
+    transition: background-color 0.5s ease;
     color: #ffffff;
 }
 
@@ -104,28 +106,20 @@ h2 {
 }
 
 .key-button {
-    padding: 30px;
-    margin: 15px 0 0 0;
+    padding:30px;
+    margin: 5px 0 0 0;
     border: 1px solid #000;
     border-radius: 5px;
     box-shadow: 2px 2px 10px #000;
     font-weight: bold;
-    font-size: 16px;
-    transition:background-color 0.5s ease;
+    font-size: 20px;
+    transition: background-color 0.5s ease;
 }
 
 .key-button:hover {
     background-color: #252525;
     color: white;
     cursor: pointer;
-}
-
-#delete-button {
-    margin-left: 5px;
-}
-
-#enter-button {
-    margin-right: 5px;
 }
 
 #delete-button:hover {
@@ -135,6 +129,7 @@ h2 {
 #enter-button:hover {
     background-color: rgb(49, 115, 168);
 }
+
 #tutorial-card {
     position: fixed;
     top: 20%;
@@ -149,8 +144,9 @@ h2 {
     box-shadow: 2px 2px 10px #000;
     z-index: 1;
     text-align: left;
-  }
-  #tutorial-controls{
+}
+
+#tutorial-controls {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -158,19 +154,21 @@ h2 {
     border-bottom: 1px solid white;
     line-height: 0;
     padding: 10px;
-  }
-  #exit-tutorial{
+}
+
+#exit-tutorial {
     padding: 5px;
     border: 1px solid #ffffff;
     background-color: rgb(107, 107, 107);
     color: #ffffff;
     border-radius: 30%;
-    width:25px;
-    transition:background-color 0.5s ease;
-    font-weight: bold;;
-  }
-  #exit-tutorial:hover{
+    width: 25px;
+    transition: background-color 0.5s ease;
+    font-weight: bold;
+    
+}
+
+#exit-tutorial:hover {
     background-color: rgb(255, 87, 87);
     cursor: pointer;
-  }
-  
+}
