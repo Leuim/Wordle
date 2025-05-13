@@ -13,17 +13,15 @@
     <header>
         <nav id="main-nav">
             <ul id="navigation">
-                <li><p id="main-title">
-                    Word<span id="title-yellow">l</span><span id="title-green">e</p></span>
+                <li id="main-title">
+                    Word<span id="title-yellow">l</span><span id="title-green">e</span>
                 </li>
-                <li ><button id="show-tutorial">Tutorial</button></li>
+                <li id="show-tutorial">Tutorial</li>
             </ul>
             <img id="logo" src="" alt="Wordle logo">
         </nav>
     </header> 
-    <h2>Try and guess the word</h2>
-    <h3 id="game-feedback">
-        </h2>
+    <h3 id="game-feedback"></h3>
         <div id="word-board">
             <div class="word-row">
                 <div class="letter-card" id="tile-0-0">
@@ -166,11 +164,33 @@
         </div>
         <div id="tutorial-card">
             <div id="tutorial-controls">
-                <h2>Tutorial</h2>
+                <h1>How To Play</h1>
                 <button id="exit-tutorial">X    
                 </button>
             </div>
-            <h1>Hello this is a test</h1>
+            <h2>Guess the 5 letter word in 6 attempts</h2> 
+            <ul>
+                <li>Each guess must be a valid 5 letter word</li>
+                <li>After each guess the tile's change colors based on how close are you to the right word</li>
+            </ul>
+            <h2>Examples:</h2>
+            <div class="example-container">
+                <div class="example-lettercard">
+                    G
+                </div>
+                <div class="example-lettercard">
+                    A
+                </div>
+                <div class="example-lettercard absent">
+                    M
+                </div>
+                <div class="example-lettercard">
+                    E
+                </div>
+                <div class="example-lettercard">
+                    S
+                </div>
+            </div>
         </div>
 
 </body>

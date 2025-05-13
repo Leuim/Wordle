@@ -45,7 +45,7 @@ const handleKeyPress = (keyValue) => {
             // console.log(gameBoard[currentRow][currentCol])
             tile.textContent = keyValue
             const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
-            tileShadow.style.backgroundColor = 'rgb(110, 110, 110)'
+            tileShadow.style.backgroundColor = 'rgb(121, 121, 121)'
             currentCol++
             // console.log(currentCol);
         } else if (currentCol >= 5) {
@@ -60,7 +60,7 @@ const deleteLetter = () => {
         const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
         tile.textContent = ''
         const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
-        tileShadow.style.backgroundColor = 'rgb(167, 167, 167)'
+        tileShadow.style.backgroundColor = '#555555'
     } else {
         // console.log('what are you trying to delete VOID?');
         gameFeedback.textContent = 'You have nothing to delete!'
@@ -77,27 +77,27 @@ const validateGuess = (guess) => {
         if (letter === randomWordLetters[index]) {
             similartyArray[index] = 'correct'
             // console.log(`#tile-${currentRow}-${index}`)
-            tile.style.backgroundColor = 'green'
+            tile.style.backgroundColor = 'rgb(83,141,78)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
-                    key.style.backgroundColor = 'rgb(2, 171, 7)'
+                    key.style.backgroundColor = 'rgb(83,141,78)'
                 }
             })
         } else if (randomWordLetters.includes(letter)) {
             similartyArray[index] = 'present'
             // console.log(randomWordLetters.includes(letter));
-            tile.style.backgroundColor = 'yellow'
+            tile.style.backgroundColor = 'rgb(181,159,59)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
-                    key.style.backgroundColor = 'rgb(189, 202, 3)'
+                    key.style.backgroundColor = 'rgb(181,159,59)'
                 }
             })
         } else if (!randomWordLetters.includes(letter)) {
             similartyArray[index] = 'absent'
-            tile.style.backgroundColor = 'black'
+            tile.style.backgroundColor = 'rgb(18,18,19)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
-                    key.style.backgroundColor = 'rgb(167, 167, 167)'
+                    key.style.backgroundColor = 'rgb(18,18,19)'
                 }
             })
         }
