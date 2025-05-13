@@ -26,6 +26,7 @@ let currentCol = 0
 const keys = document.querySelectorAll('.key-button')
 const gameFeedback = document.querySelector('#game-feedback')
 const showTutorialButton = document.querySelector('#show-tutorial')
+const exitTutorialButton = document.querySelector('#exit-tutorial')
 const tutorialCard = document.querySelector('#tutorial-card')
 // functions
 console.log('random word is:', randomWord);
@@ -151,6 +152,9 @@ const handleKeyboardClick = (event) => {
 const showTutorial = () => {
     tutorialCard.style.display = 'block'
 }
+const exitTutorial = () =>{
+    tutorialCard.style.display = 'none'
+}
 // eventlisteners
 keys.forEach(key => {
     key.addEventListener('click', () => {
@@ -160,4 +164,5 @@ keys.forEach(key => {
     })
 });
 showTutorialButton.addEventListener('click', showTutorial)
+exitTutorialButton.addEventListener('click', exitTutorial)
 document.addEventListener('keydown', handleKeyboardClick)
