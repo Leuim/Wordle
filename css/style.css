@@ -5,14 +5,17 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(133, 133, 133);
+    background-color: rgb(43, 43, 43);
 }
 
 #main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: aliceblue;
+    background-color: rgb(24, 24, 24);
+    color: rgb(255, 255, 255);
+    border-bottom:1px solid rgb(255, 255, 255);
+    
 }
 
 #navigation {
@@ -20,7 +23,6 @@ body {
     gap: 10px;
     list-style: none;
     font-weight: bold;
-    color: rgb(47, 58, 47)
 }
 
 #logo {
@@ -30,9 +32,10 @@ body {
 }
 
 #main-title {
-    font-size: 46px;
+    font-size: 24px;
     color: whitesmoke;
     text-align: center;
+    margin: 0;
     -webkit-text-stroke: 1px rgb(0, 0, 0);
     text-shadow: 2px 5px 10px #000;
 }
@@ -130,11 +133,11 @@ h2 {
 }
 
 #enter-button:hover {
-    background-color: rgb(59, 102, 138);
+    background-color: rgb(49, 115, 168);
 }
 #tutorial-card {
     position: fixed;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
@@ -146,7 +149,6 @@ h2 {
     box-shadow: 2px 2px 10px #000;
     z-index: 1;
     text-align: left;
-    transition: opacity 0.5s ease;
   }
   #tutorial-controls{
     display: flex;

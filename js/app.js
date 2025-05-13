@@ -258,4 +258,4 @@ keys.forEach(key => {
         handleKeyPress(keyValue)
     })
 });
-showTutorialButton.addEventListener('click', showTutorial)
+showTutorialButton.addEventListener('click', showTutorial) 
