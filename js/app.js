@@ -15,7 +15,7 @@ const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', '']]
 const guessableWords = [
-  'BROWN', 'BROAD', 'NOBLE', 'WNROB', 'QUICK', 'START'
+    'BROWN', 'BROAD', 'NOBLE', 'WNROB', 'QUICK', 'START', 'GAMES', 'QUITE'
 ];
 
 const wordList = ['BROWN']
@@ -93,8 +93,8 @@ const validateGuess = (guess) => {
             keys.forEach(key => {
                 if (key.textContent === letter) {
                     const currentColor = window.getComputedStyle(key).backgroundColor
-                    console.log(currentColor); 
-                    if(currentColor !== 'rgb(83, 141, 78)' && currentColor !== 'rgb(181, 159, 59)'){
+                    console.log(currentColor);
+                    if (currentColor !== 'rgb(83, 141, 78)' && currentColor !== 'rgb(181, 159, 59)') {
                         key.style.backgroundColor = 'rgb(181, 159, 59)'
                     }
                 }
@@ -161,10 +161,10 @@ const handleKeyboardClick = (event) => {
 const showTutorial = () => {
     tutorialCard.style.display = 'block'
 }
-const exitTutorial = () =>{
+const exitTutorial = () => {
     tutorialCard.style.display = 'none'
 }
-const handleRestart = () =>{
+const handleRestart = () => {
     randomWord = wordList[Math.floor(Math.random() * wordList.length)]
     currentRow = 0
     gamestate = true
@@ -172,14 +172,15 @@ const handleRestart = () =>{
     const letterCards = document.querySelectorAll('.letter-card')
     const keyboardKeys = document.querySelectorAll('.key-button')
     // console.log(letterCards);
-    letterCards.forEach(card =>{
+    letterCards.forEach(card => {
         card.textContent = ''
-        card.style.backgroundColor = '#555555'
+        card.removeAttribute('style')
     })
-    keyboardKeys.forEach(key =>{
-        key.style.backgroundColor = '#555555'
+    keyboardKeys.forEach(key => {
+        key.removeAttribute('style')
     })
     resetButton.style.display = 'none'
+    gameFeedback.textContent = ''
 }
 // eventlisteners
 keys.forEach(key => {
