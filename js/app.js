@@ -14,7 +14,7 @@ const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', '']]
-const guessableWords = ['BROWN', 'BROAD', 'WNROB', 'QUICK', 'BROOM', 'NOBLE']
+const guessableWords = ['BROWN', 'BROAD', 'WNROB', 'QUICK', 'BROOM', 'NOBLE', 'START']
 
 const wordList = ['BROWN']
 let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
@@ -90,6 +90,8 @@ const validateGuess = (guess) => {
             tile.style.backgroundColor = 'rgb(181,159,59)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
+                    const currentColor = key.style.backgroundColor
+                    console.log(currentColor); 
                     key.style.backgroundColor = 'rgb(181,159,59)'
                 }
             })
