@@ -17,7 +17,7 @@ const gameBoard = [['', '', '', '', ''],
 const guessableWords = ['BROWN', 'BROAD', 'WNROB', 'QUICK', 'BROOM', 'NOBLE']
 
 const wordList = ['BROWN']
-const randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
 let currentRow = 0
 let gamestate = true
 let currentCol = 0
@@ -28,6 +28,7 @@ const gameFeedback = document.querySelector('#game-feedback')
 const showTutorialButton = document.querySelector('#show-tutorial')
 const exitTutorialButton = document.querySelector('#exit-tutorial')
 const tutorialCard = document.querySelector('#tutorial-card')
+const resetButton = document.querySelector('#reset-game')
 // functions
 console.log('random word is:', randomWord);
 const handleKeyPress = (keyValue) => {
@@ -129,10 +130,12 @@ const gameEnd = (similartyArray) => {
         console.log('you win');
         gameFeedback.textContent = `Congrats you won in ${currentRow + 1} attempt`;
         gamestate = false;
+        resetButton.style.display = 'block'
     } else if (currentRow === 5) {
         console.log('you lose');
         gameFeedback.textContent = `You consumed all your attempts. The correct word is ${randomWord.toLowerCase()}`;
         gamestate = false;
+        resetButton.style.display = 'block'
     }
 }
 const handleKeyboardClick = (event) => {
@@ -155,6 +158,23 @@ const showTutorial = () => {
 const exitTutorial = () =>{
     tutorialCard.style.display = 'none'
 }
+const handleRestart = () =>{
+    randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+    currentRow = 0
+    gamestate = true
+    currentCol = 0
+    const letterCards = document.querySelectorAll('.letter-card')
+    const keyboardKeys = document.querySelectorAll('.key-button')
+    // console.log(letterCards);
+    letterCards.forEach(card =>{
+        card.textContent = ''
+        card.style.backgroundColor = '#555555'
+    })
+    keyboardKeys.forEach(key =>{
+        key.style.backgroundColor = '#555555'
+    })
+    resetButton.style.display = 'none'
+}
 // eventlisteners
 keys.forEach(key => {
     key.addEventListener('click', () => {
@@ -166,3 +186,4 @@ keys.forEach(key => {
 showTutorialButton.addEventListener('click', showTutorial)
 exitTutorialButton.addEventListener('click', exitTutorial)
 document.addEventListener('keydown', handleKeyboardClick)
+resetButton.addEventListener('click', handleRestart)
