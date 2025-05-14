@@ -14,7 +14,9 @@ const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', '']]
-const guessableWords = ['BROWN', 'BROAD', 'WNROB', 'QUICK', 'BROOM', 'NOBLE', 'START']
+const guessableWords = [
+  'BROWN', 'BROAD', 'NOBLE', 'WNROB', 'QUICK', 'START'
+];
 
 const wordList = ['BROWN']
 let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
@@ -87,20 +89,22 @@ const validateGuess = (guess) => {
         } else if (randomWordLetters.includes(letter)) {
             similartyArray[index] = 'present'
             // console.log(randomWordLetters.includes(letter));
-            tile.style.backgroundColor = 'rgb(181,159,59)'
+            tile.style.backgroundColor = 'rgb(181, 159, 59)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
-                    const currentColor = key.style.backgroundColor
+                    const currentColor = window.getComputedStyle(key).backgroundColor
                     console.log(currentColor); 
-                    key.style.backgroundColor = 'rgb(181,159,59)'
+                    if(currentColor !== 'rgb(83, 141, 78)' && currentColor !== 'rgb(181, 159, 59)'){
+                        key.style.backgroundColor = 'rgb(181, 159, 59)'
+                    }
                 }
             })
         } else if (!randomWordLetters.includes(letter)) {
             similartyArray[index] = 'absent'
-            tile.style.backgroundColor = 'rgb(18,18,19)'
+            tile.style.backgroundColor = 'rgb(18, 18, 19)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
-                    key.style.backgroundColor = 'rgb(18,18,19)'
+                    key.style.backgroundColor = 'rgb(18, 18, 19)'
                 }
             })
         }
