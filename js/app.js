@@ -8,23 +8,23 @@
 // As a user. I want to see feedback if a letter(s) in the word I choose is in the right word and if it is there but its place is incorrect to show me feedback for that case
 // As a user. I want to see feedback if a letter(s) in the word I choose is in the right word and if it is there and its place is correct to show me feedback for that case
 // AS a user. I want to see feedback if I win/lose and how much tries I had left
+
+// Varibles
+import { guessableWords, wordList } from '/js/wordlist.js';
+
 const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', '']]
-const guessableWords = [
-    'BROWN', 'BROAD', 'NOBLE', 'WNROB', 'QUICK', 'START', 'GAMES', 'QUITE'
-];
 
-const wordList = ['BROWN']
 let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
 let currentRow = 0
 let gamestate = true
 let currentCol = 0
 
-// cached event listeners
+// cached elements
 const keys = document.querySelectorAll('.key-button')
 const gameFeedback = document.querySelector('#game-feedback')
 const showTutorialButton = document.querySelector('#show-tutorial')
