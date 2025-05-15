@@ -8,6 +8,48 @@ body {
     background-color: rgb(43, 43, 43);
 }
 
+.home-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    height: 100vh;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    color: white;
+}
+#title-logo-container{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+#landing-page-title{
+    font-size: 80px;
+    line-height: 5px;
+    -webkit-text-stroke: 3px rgb(74, 74, 74);
+    text-shadow: 10px 5px 10px #000; 
+}
+#play-button{
+    padding: 20px;
+    font-size: 36px;
+    font-weight: 700;
+    width: 50%;
+    border: 3px #999999 solid;
+    border-radius: 10px;
+    background-color: #494949;
+    box-shadow: 2px 2px 10px #3e3e3e;
+    color: white;
+}
+#play-button:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 10px #626262;
+    border: 3px #fdfdfd solid;
+    background-color: #878787;
+}
 #main-nav {
     display: flex;
     justify-content: space-between;
@@ -35,21 +77,22 @@ body {
     color: whitesmoke;
     text-align: center;
     margin: 0;
-    -webkit-text-stroke: 1px rgb(0, 0, 0);
     text-shadow: 2px 5px 10px #000;
 }
-#show-tutorial{
+
+#show-tutorial {
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    -webkit-text-stroke: 1px rgb(0, 0, 0);
     font-size: 24px;
-    text-shadow: 2px 5px 10px #000;
+    /* text-shadow: 2px 5px 10px #000; */
 }
-#navigation li:hover{
+
+#navigation li:hover {
     cursor: pointer;
     color: #999999;
 }
+
 #title-yellow {
     color: rgb(209, 209, 22)
 }
@@ -69,7 +112,7 @@ body {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    margin:5px 0;
+    margin: 5px 0;
     /* z-index: 0; */
 }
 
@@ -84,7 +127,7 @@ h2 {
 .letter-card {
     border: 2px solid #000;
     border-radius: 5px;
-    background-color:#555555;
+    background-color: #555555;
     padding: 25px;
     margin: 2px;
     height: 100px;
@@ -99,6 +142,7 @@ h2 {
     transition: background-color 0.5s ease;
     color: #ffffff;
 }
+
 #keyboard-container {
     display: flex;
     flex-flow: column nowrap;
@@ -186,12 +230,14 @@ h2 {
     background-color: rgb(255, 87, 87);
     cursor: pointer;
 }
-.example-container{
+
+.example-container {
     display: flex;
-    flex-flow:row nowrap;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
 }
+
 .example-lettercard {
     border: 2px solid #000;
     border-radius: 5px;
@@ -209,33 +255,40 @@ h2 {
     transition: background-color 0.5s ease;
     color: #ffffff;
 }
-.absent{
-    background-color: rgb(18,18,19);
+
+.absent {
+    background-color: rgb(18, 18, 19);
 }
-.correct{
-    background-color: rgb(83,141,78);
+
+.correct {
+    background-color: rgb(83, 141, 78);
 }
-.present{
-    background-color: rgb(181,159,59);
+
+.present {
+    background-color: rgb(181, 159, 59);
 }
-#game-info{
+
+#game-info {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
 }
-#reset-game{
+
+#reset-game {
     display: none;
-    margin:0 auto;
+    margin: 0 auto;
     padding: 20px;
-    font-size:24px;
-    border:1px #999999 solid;
+    font-size: 24px;
+    border: 1px #999999 solid;
     border-radius: 10px;
     background-color: #494949;
     box-shadow: 2px 2px 10px #3e3e3e;
     color: white;
 }
-#reset-game:hover{
+
+#reset-game:hover {
     box-shadow: 2px 2px 10px #626262;
     cursor: pointer;
     background-color: #878787;
+    border: 3px #fdfdfd solid;
 }
