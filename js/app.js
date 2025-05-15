@@ -19,7 +19,8 @@ const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', '']]
 
-let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+// let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+let randomWord = 'MONEY'
 let currentRow = 0
 let gamestate = true
 let currentCol = 0
@@ -27,6 +28,8 @@ let currentCol = 0
 // cached elements
 const keys = document.querySelectorAll('.key-button')
 const gameFeedback = document.querySelector('#game-feedback')
+const gameOutcome = document.querySelector('#game-outcome')
+const gameInfo = document.querySelector('#game-info-container')
 const showTutorialButton = document.querySelector('#show-tutorial')
 const exitTutorialButton = document.querySelector('#exit-tutorial')
 const tutorialCard = document.querySelector('#tutorial-card')
@@ -37,22 +40,17 @@ const handleKeyPress = (keyValue) => {
     if (gamestate) {
         gameFeedback.textContent = ''
         if (keyValue === 'DELETE') {
-            // console.log('Delete');
             deleteLetter()
         } else if (keyValue === 'ENTER') {
-            // console.log('Submit');
             submitGuess()
         } else if (currentCol < 5) {
             const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
             gameBoard[currentRow][currentCol] = keyValue
-            // console.log(gameBoard[currentRow][currentCol])
             tile.textContent = keyValue
             const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
             tileShadow.style.backgroundColor = 'rgb(121, 121, 121)'
             currentCol++
-            // console.log(currentCol);
         } else if (currentCol >= 5) {
-            // console.log('what are you trying to add VOID?');
             gameFeedback.textContent = 'Press Enter to make a guess!'
         }
     }
@@ -65,21 +63,17 @@ const deleteLetter = () => {
         const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
         tileShadow.style.backgroundColor = '#555555'
     } else {
-        // console.log('what are you trying to delete VOID?');
-        gameFeedback.textContent = 'You have nothing to delete!'
+            gameFeedback.textContent = 'You have nothing to delete!';
     }
 }
 const validateGuess = (guess) => {
     const guessLetters = guess.split('')
     const randomWordLetters = randomWord.split('')
     const similartyArray = ['absent', 'absent', 'absent', 'absent', 'absent']
-    // console.log(guessLetters);
-    // console.log(randomWordLetters);
     guessLetters.forEach((letter, index) => {
         const tile = document.querySelector(`#tile-${currentRow}-${index}`)
         if (letter === randomWordLetters[index]) {
             similartyArray[index] = 'correct'
-            // console.log(`#tile-${currentRow}-${index}`)
             tile.style.backgroundColor = 'rgb(83,141,78)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
@@ -88,7 +82,6 @@ const validateGuess = (guess) => {
             })
         } else if (randomWordLetters.includes(letter)) {
             similartyArray[index] = 'present'
-            // console.log(randomWordLetters.includes(letter));
             tile.style.backgroundColor = 'rgb(181, 159, 59)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
@@ -118,7 +111,6 @@ const submitGuess = () => {
     }
     const guess = gameBoard[currentRow].join('')
     if (guessableWords.includes(guess)) {
-        console.log("Guess submitted:", guess)
         validateGuess(guess)
         if (currentRow < 5) {
             currentRow++
@@ -133,22 +125,19 @@ const gameEnd = (similartyArray) => {
         return similarty === 'correct'
     }
     )) {
-        console.log('you win');
-        gameFeedback.textContent = `Congrats you won in ${currentRow + 1} attempt`;
+        gameOutcome.textContent = `Congrats you won in ${currentRow + 1} attempt`;
         gamestate = false;
-        resetButton.style.display = 'block'
+        gameInfo.style.display= 'flex'
     } else if (currentRow === 5) {
-        console.log('you lose');
-        gameFeedback.textContent = `You consumed all your attempts. The correct word is ${randomWord.toLowerCase()}`;
+        gameOutcome.textContent = `You consumed all your attempts. The correct word is ${randomWord.toLowerCase()}`;
         gamestate = false;
-        resetButton.style.display = 'block'
+        gameInfo.style.display= 'flex'
     }
 }
 const handleKeyboardClick = (event) => {
     if (gamestate) {
         const verfiedKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         const pressedKey = event.key.toUpperCase()
-        console.log(pressedKey)
         if (verfiedKeys.includes(pressedKey)) {
             handleKeyPress(pressedKey)
         } else if (pressedKey === 'BACKSPACE') {
@@ -179,8 +168,8 @@ const handleRestart = () => {
     keyboardKeys.forEach(key => {
         key.removeAttribute('style')
     })
-    resetButton.style.display = 'none'
     gameFeedback.textContent = ''
+    gameInfo.style.display = 'none'
 }
 // eventlisteners
 keys.forEach(key => {

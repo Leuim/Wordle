@@ -9,6 +9,7 @@
     <title>Wordle</title>
     <link rel="icon" type="image/icon" href="image/logo.png">
 </head>
+
 <body>
     <header>
         <nav id="main-nav">
@@ -21,10 +22,13 @@
             <img id="logo" src="image/logo.png" alt="Wordle logo">
         </nav>
     </header>
-    <div id="game-info">
-        <h3 id="game-feedback"></h3>
-        <button id="reset-game">Restart Game</button>
+    <div id="game-info-container">
+        <div id="game-info">
+            <h1 id="game-outcome"></h1>
+            <button id="reset-game">Restart Game</button>
+        </div>
     </div>
+            <h3 id="game-feedback"></h3>
     <div id="word-board">
         <div class="word-row">
             <div class="letter-card" id="tile-0-0">

@@ -113,7 +113,6 @@ body {
     justify-content: center;
     align-items: center;
     margin: 5px 0;
-    /* z-index: 0; */
 }
 
 .word-row {
@@ -148,11 +147,9 @@ h2 {
     flex-flow: column nowrap;
     align-items: center;
     margin: 10px 0;
-    /* z-index: 0; */
 }
 
 .key-button {
-    /* padding:30px; */
     margin: 5px 0 0 0;
     border: 1px solid #000;
     border-radius: 5px;
@@ -268,14 +265,32 @@ h2 {
     background-color: rgb(181, 159, 59);
 }
 
+#game-info-container {
+    display: none;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(20, 20, 20, 0.4); 
+    z-index: 1;
+}
+
 #game-info {
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 #reset-game {
-    display: none;
     margin: 0 auto;
     padding: 20px;
     font-size: 24px;
