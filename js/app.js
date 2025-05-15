@@ -20,7 +20,6 @@ const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', '']]
 
 let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
-// let randomWord = 'MONEY'
 let currentRow = 0
 let gamestate = true
 let currentCol = 0
@@ -64,17 +63,24 @@ const deleteLetter = () => {
         const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
         tileShadow.style.backgroundColor = '#555555'
     } else {
-            gameFeedback.textContent = 'You have nothing to delete!';
+        gameFeedback.textContent = 'You have nothing to delete!';
     }
 }
 const validateGuess = (guess) => {
     const guessLetters = guess.split('')
     const randomWordLetters = randomWord.split('')
     const similartyArray = ['absent', 'absent', 'absent', 'absent', 'absent']
+    const obj = {};
+    for (const char of guess) {
+        obj[char] = (obj[char] || 0) + 1;
+    }
+    
+    console.log(obj);
     guessLetters.forEach((letter, index) => {
         const tile = document.querySelector(`#tile-${currentRow}-${index}`)
         if (letter === randomWordLetters[index]) {
             similartyArray[index] = 'correct'
+            tile.style.border = '1px solid rgb(126, 126, 126)'
             tile.style.backgroundColor = 'rgb(83,141,78)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
@@ -84,10 +90,12 @@ const validateGuess = (guess) => {
         } else if (randomWordLetters.includes(letter)) {
             similartyArray[index] = 'present'
             tile.style.backgroundColor = 'rgb(181, 159, 59)'
+            tile.style.border = '1px solid rgb(126, 126, 126)'
+
             keys.forEach(key => {
                 if (key.textContent === letter) {
                     const currentColor = window.getComputedStyle(key).backgroundColor
-                    console.log(currentColor);
+                    // console.log(currentColor);
                     if (currentColor !== 'rgb(83, 141, 78)' && currentColor !== 'rgb(181, 159, 59)') {
                         key.style.backgroundColor = 'rgb(181, 159, 59)'
                     }
@@ -95,10 +103,11 @@ const validateGuess = (guess) => {
             })
         } else if (!randomWordLetters.includes(letter)) {
             similartyArray[index] = 'absent'
-            tile.style.backgroundColor = 'rgb(18, 18, 19)'
+            tile.style.backgroundColor = 'rgb(37, 37, 38)'
+            tile.style.border = '1px solid rgb(126, 126, 126)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
-                    key.style.backgroundColor = 'rgb(18, 18, 19)'
+                    key.style.backgroundColor = 'rgb(37, 37, 38)'
                 }
             })
         }
@@ -128,11 +137,11 @@ const gameEnd = (similartyArray) => {
     )) {
         gameOutcome.textContent = `Congrats you won in ${currentRow + 1} attempt`;
         gamestate = false;
-        gameInfo.style.display= 'flex'
+        gameInfo.style.display = 'flex'
     } else if (currentRow === 5) {
         gameOutcome.textContent = `You consumed all your attempts. The correct word is ${randomWord.toLowerCase()}`;
         gamestate = false;
-        gameInfo.style.display= 'flex'
+        gameInfo.style.display = 'flex'
     }
 }
 const handleKeyboardClick = (event) => {
