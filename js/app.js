@@ -32,7 +32,8 @@ const gameOutcome = document.querySelector('#game-outcome')
 const gameInfo = document.querySelector('#game-info-container')
 const showTutorialButton = document.querySelector('#show-tutorial')
 const exitTutorialButton = document.querySelector('#exit-tutorial')
-const tutorialCard = document.querySelector('#tutorial-card')
+const gameTutorial = document.querySelector('#game-tutorial-container')
+// const tutorialCard = document.querySelector('#tutorial-card')
 const resetButton = document.querySelector('#reset-game')
 // functions
 console.log('random word is:', randomWord);
@@ -148,10 +149,10 @@ const handleKeyboardClick = (event) => {
     }
 }
 const showTutorial = () => {
-    tutorialCard.style.display = 'block'
+    gameTutorial.style.display = 'flex'
 }
 const exitTutorial = () => {
-    tutorialCard.style.display = 'none'
+    gameTutorial.style.display = 'none'
 }
 const handleRestart = () => {
     randomWord = wordList[Math.floor(Math.random() * wordList.length)]
@@ -175,7 +176,6 @@ const handleRestart = () => {
 keys.forEach(key => {
     key.addEventListener('click', () => {
         const keyValue = key.innerText
-        // console.log(keyValue);
         handleKeyPress(keyValue)
     })
 });

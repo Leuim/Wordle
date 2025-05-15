@@ -185,12 +185,23 @@ h2 {
     background-color: rgb(49, 115, 168);
 }
 
-#tutorial-card {
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#game-tutorial-container {
     display: none;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(20, 20, 20, 0.4); 
+    z-index: 1;
+}
+
+#tutorial-card {
+    position: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(43, 43, 43);
     color: white;
     width: 550px;
