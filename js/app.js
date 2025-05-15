@@ -19,8 +19,8 @@ const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', '']]
 
-// let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
-let randomWord = 'MONEY'
+let randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+// let randomWord = 'MONEY'
 let currentRow = 0
 let gamestate = true
 let currentCol = 0
