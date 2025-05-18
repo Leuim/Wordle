@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer type="module" src="js/app.js"></script>
+    <title>Wordle</title>
+    <link rel="icon" type="image/icon" href="image/logo.png">
+</head>
+
+<body>
+    <header>
+        <nav id="main-nav">
+            <ul id="navigation">
+                <li id="main-title" onclick="window.location.href ='index.html'">
+                    Word<span id="title-yellow">l</span><span id="title-green">e</span>
+                </li>
+                <li id="show-tutorial">Tutorial</li>
+            </ul>
+            <img id="logo" src="image/logo.png" alt="Wordle logo" onclick="window.location.href ='index.html'">
+        </nav>
+    </header>
+    <div id="game-info-container">
+        <div id="game-info">
+            <h1 id="game-outcome"></h1>
+            <button id="reset-game">Restart Game</button>
+        </div>
+    </div>
+    <h3 id="game-feedback"></h3>
+    <div id="word-board">
+        <div class="word-row">
+            <div class="letter-card" id="tile-0-0">
+
+            </div>
+            <div class="letter-card" id="tile-0-1">
+
+            </div>
+            <div class="letter-card" id="tile-0-2">
+
+            </div>
+            <div class="letter-card" id="tile-0-3">
+
+            </div>
+            <div class="letter-card" id="tile-0-4">
+
+            </div>
+        </div>
+        <div class="word-row">
+            <div class="letter-card" id="tile-1-0">
+
+            </div>
+            <div class="letter-card" id="tile-1-1">
+
+            </div>
+            <div class="letter-card" id="tile-1-2">
+
+            </div>
+            <div class="letter-card" id="tile-1-3">
+
+            </div>
+            <div class="letter-card" id="tile-1-4">
+
+            </div>
+        </div>
+        <div class="word-row">
+            <div class="letter-card" id="tile-2-0">
+
+            </div>
+            <div class="letter-card" id="tile-2-1">
+
+            </div>
+            <div class="letter-card" id="tile-2-2">
+
+            </div>
+            <div class="letter-card" id="tile-2-3">
+
+            </div>
+            <div class="letter-card" id="tile-2-4">
+
+            </div>
+        </div>
+        <div class="word-row">
+            <div class="letter-card" id="tile-3-0">
+
+            </div>
+            <div class="letter-card" id="tile-3-1">
+
+            </div>
+            <div class="letter-card" id="tile-3-2">
+
+            </div>
+            <div class="letter-card" id="tile-3-3">
+
+            </div>
+            <div class="letter-card" id="tile-3-4">
+
+            </div>
+        </div>
+        <div class="word-row">
+            <div class="letter-card" id="tile-4-0">
+
+            </div>
+            <div class="letter-card" id="tile-4-1">
+
+            </div>
+            <div class="letter-card" id="tile-4-2">
+
+            </div>
+            <div class="letter-card" id="tile-4-3">
+
+            </div>
+            <div class="letter-card" id="tile-4-4">
+
+            </div>
+        </div>
+        <div class="word-row">
+            <div class="letter-card" id="tile-5-0">
+
+            </div>
+            <div class="letter-card" id="tile-5-1">
+
+            </div>
+            <div class="letter-card" id="tile-5-2">
+
+            </div>
+            <div class="letter-card" id="tile-5-3">
+
+            </div>
+            <div class="letter-card" id="tile-5-4">
+
+            </div>
+        </div>
+    </div>
+    <div id="keyboard-container">
+        <div id="keyboard-row-1">
+            <button class="key-button">Q</button>
+            <button class="key-button">W</button>
+            <button class="key-button">E</button>
+            <button class="key-button">R</button>
+            <button class="key-button">T</button>
+            <button class="key-button">Y</button>
+            <button class="key-button">U</button>
+            <button class="key-button">I</button>
+            <button class="key-button">O</button>
+            <button class="key-button">P</button>
+        </div>
+        <div id="keyboard-row-2">
+            <button class="key-button">A</button>
+            <button class="key-button">S</button>
+            <button class="key-button">D</button>
+            <button class="key-button">F</button>
+            <button class="key-button">G</button>
+            <button class="key-button">H</button>
+            <button class="key-button">J</button>
+            <button class="key-button">K</button>
+            <button class="key-button">L</button>
+        </div>
+        <div id="keyboard-row-1">
+            <button class="key-button" id="enter-button">ENTER</button>
+            <button class="key-button">Z</button>
+            <button class="key-button">X</button>
+            <button class="key-button">C</button>
+            <button class="key-button">V</button>
+            <button class="key-button">B</button>
+            <button class="key-button">N</button>
+            <button class="key-button">M</button>
+            <button class="key-button" id="delete-button">DELETE</button>
+        </div>
+    </div>
+    <div id="game-tutorial-container">
+        <div id="tutorial-card">
+            <div id="tutorial-controls">
+                <img id="logo" src="image/logo.png" alt="Wordle logo">
+                <h1>How To Play</h1>
+                <button id="exit-tutorial">X
+                </button>
+            </div>
+            <h2>Guess the 5 letter word in 6 attempts</h2>
+            <ul>
+                <li>Each guess must be a valid 5 letter word</li>
+                <li>After each guess the tile's change colors based on how close are you to the right word</li>
+            </ul>
+            <h2>Examples:</h2>
+            <div class="example-container">
+                <div class="example-lettercard">
+                    G
+                </div>
+                <div class="example-lettercard">
+                    A
+                </div>
+                <div class="example-lettercard absent">
+                    M
+                </div>
+                <div class="example-lettercard">
+                    E
+                </div>
+                <div class="example-lettercard">
+                    S
+                </div>
+            </div>
+            <p><strong>M</strong> is not in the word in any spot</p>
+            <div class="example-container">
+                <div class="example-lettercard">
+                    G
+                </div>
+                <div class="example-lettercard">
+                    A
+                </div>
+                <div class="example-lettercard">
+                    M
+                </div>
+                <div class="example-lettercard present">
+                    E
+                </div>
+                <div class="example-lettercard">
+                    S
+                </div>
+            </div>
+            <p><strong>E</strong> is present in the word but in the incorrect spot</p>
+            <div class="example-container">
+                <div class="example-lettercard correct">
+                    G
+                </div>
+                <div class="example-lettercard">
+                    A
+                </div>
+                <div class="example-lettercard">
+                    M
+                </div>
+                <div class="example-lettercard">
+                    E
+                </div>
+                <div class="example-lettercard">
+                    S
+                </div>
+            </div>
+            <p><strong>G</strong> is present in the word and at the correct spot</p>
+        </div>
+    </div>
+</body>
+</html>
