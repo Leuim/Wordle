@@ -10,7 +10,7 @@
 // AS a user. I want to see feedback if I win/lose and how much tries I had left
 
 // Varibles
-import { guessableWords, wordList } from '/js/wordlist.js';
+import { guessableWords, wordList } from './wordlist.js';
 
 const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
