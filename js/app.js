@@ -34,7 +34,7 @@ const exitTutorialButton = document.querySelector('#exit-tutorial')
 const gameTutorial = document.querySelector('#game-tutorial-container')
 const resetButton = document.querySelector('#reset-game')
 // functions
-
+console.log(randomWord)
 const handleKeyPress = (keyValue) => {
     if (gamestate) {
         if (keyValue === 'DELETE') {
@@ -192,6 +192,7 @@ const exitTutorial = () => {
 
 const handleRestart = () => {
     randomWord = wordList[Math.floor(Math.random() * wordList.length)]
+    console.log(randomWord)
     currentRow = 0
     gamestate = true
     currentCol = 0
