@@ -10,9 +10,7 @@
 // AS a user. I want to see feedback if I win/lose and how much tries I had left
 
 // Varibles
-// import { guessableWords, wordList } from '/js/wordlist.js';
-const guessableWords = ['SLEEP', 'SWEET','BANAL', 'EEOKE']
-const wordList = ['SWEET']
+import { guessableWords, wordList } from '/js/wordlist.js';
 
 const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
@@ -34,13 +32,11 @@ const gameInfo = document.querySelector('#game-info-container')
 const showTutorialButton = document.querySelector('#show-tutorial')
 const exitTutorialButton = document.querySelector('#exit-tutorial')
 const gameTutorial = document.querySelector('#game-tutorial-container')
-// const tutorialCard = document.querySelector('#tutorial-card')
 const resetButton = document.querySelector('#reset-game')
 // functions
-console.log('random word is:', randomWord);
+
 const handleKeyPress = (keyValue) => {
     if (gamestate) {
-        gameFeedback.textContent = ''
         if (keyValue === 'DELETE') {
             deleteLetter()
         } else if (keyValue === 'ENTER') {
@@ -50,13 +46,17 @@ const handleKeyPress = (keyValue) => {
             gameBoard[currentRow][currentCol] = keyValue
             tile.textContent = keyValue
             const tileShadow = document.querySelector(`#tile-${currentRow}-${currentCol}`)
-            tileShadow.style.backgroundColor = 'rgb(121, 121, 121)'
+            tileShadow.style.backgroundColor = 'rgb(66, 66, 66)'
             currentCol++
         } else if (currentCol >= 5) {
             gameFeedback.textContent = 'Press Enter to make a guess!'
+            setTimeout(() => {
+                gameFeedback.textContent = '';
+            }, 3000);
         }
     }
 }
+
 const deleteLetter = () => {
     if (currentCol > 0) {
         currentCol--
@@ -66,8 +66,12 @@ const deleteLetter = () => {
         tileShadow.style.backgroundColor = '#555555'
     } else {
         gameFeedback.textContent = 'You have nothing to delete!';
+        setTimeout(() => {
+            gameFeedback.textContent = '';
+        }, 3000);
     }
 }
+
 const validateGuess = (guess) => {
     const guessLetters = guess.split('')
     const randomWordLetters = randomWord.split('')
@@ -76,14 +80,11 @@ const validateGuess = (guess) => {
     for (const char of randomWord) {
         letterCount[char] = (letterCount[char] || 0) + 1;
     }
-    // console.log(letterCount);
     guessLetters.forEach((letter, index) => {
         const tile = document.querySelector(`#tile-${currentRow}-${index}`)
-        console.log(letter === randomWordLetters[index]);
         if (letter === randomWordLetters[index]) {
             letterCount[letter]--
             similartyArray[index] = 'correct'
-            tile.style.border = '1px solid rgb(126, 126, 126)'
             tile.style.backgroundColor = 'rgb(83, 141, 78)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
@@ -93,20 +94,18 @@ const validateGuess = (guess) => {
         }
     })
 
-    guessLetters.forEach((letter, index) =>{
+    guessLetters.forEach((letter, index) => {
         const tile = document.querySelector(`#tile-${currentRow}-${index}`)
-        if(similartyArray[index] === 'correct' || similartyArray[index] === 'present'){
+        if (similartyArray[index] === 'correct' || similartyArray[index] === 'present') {
             return
         }
-        if(randomWordLetters.includes(letter) && letterCount[letter] > 0) {
+        if (randomWordLetters.includes(letter) && letterCount[letter] > 0) {
             letterCount[letter]--
             similartyArray[index] = 'present'
             tile.style.backgroundColor = 'rgb(181, 159, 59)'
-            tile.style.border = '1px solid rgb(126, 126, 126)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
                     const currentColor = window.getComputedStyle(key).backgroundColor
-                    // console.log(currentColor);
                     if (currentColor !== 'rgb(83, 141, 78)' && currentColor !== 'rgb(181, 159, 59)') {
                         key.style.backgroundColor = 'rgb(181, 159, 59)'
                     }
@@ -115,7 +114,6 @@ const validateGuess = (guess) => {
         } else {
             similartyArray[index] = 'absent'
             tile.style.backgroundColor = 'rgb(37, 37, 38)'
-            tile.style.border = '1px solid rgb(126, 126, 126)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
                     key.style.backgroundColor = 'rgb(37, 37, 38)'
@@ -125,9 +123,13 @@ const validateGuess = (guess) => {
     })
     gameEnd(similartyArray)
 }
+
 const submitGuess = () => {
     if (currentCol < 5) {
         gameFeedback.textContent = 'Please enter a five letters word'
+        setTimeout(() => {
+            gameFeedback.textContent = '';
+        }, 3000);
         return
     }
     const guess = gameBoard[currentRow].join('')
@@ -139,6 +141,10 @@ const submitGuess = () => {
         }
     } else {
         gameFeedback.textContent = 'Word is not in the game'
+        gameFeedback.textContent = 'Please enter a five letters word'
+        setTimeout(() => {
+            gameFeedback.textContent = '';
+        }, 3000);
     }
 }
 const gameEnd = (similartyArray) => {
@@ -146,15 +152,23 @@ const gameEnd = (similartyArray) => {
         return similarty === 'correct'
     }
     )) {
-        gameOutcome.textContent = `Congrats you won in ${currentRow + 1} attempt`;
-        gamestate = false;
-        gameInfo.style.display = 'flex'
+        if (currentRow + 1 === 1) {
+            gameOutcome.textContent = `Congrats you won in ${currentRow + 1} attempt`;
+            gamestate = false;
+            gameInfo.style.display = 'flex'
+        }
+        else {
+            gameOutcome.textContent = `Congrats you won in ${currentRow + 1} attempts`;
+            gamestate = false;
+            gameInfo.style.display = 'flex'
+        }
     } else if (currentRow === 5) {
         gameOutcome.textContent = `You consumed all your attempts. The correct word is ${randomWord.toLowerCase()}`;
         gamestate = false;
         gameInfo.style.display = 'flex'
     }
 }
+
 const handleKeyboardClick = (event) => {
     if (gamestate) {
         const verfiedKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -168,25 +182,26 @@ const handleKeyboardClick = (event) => {
         }
     }
 }
+
 const showTutorial = () => {
     gameTutorial.style.display = 'flex'
 }
+
 const exitTutorial = () => {
     gameTutorial.style.display = 'none'
 }
+
 const handleRestart = () => {
     randomWord = wordList[Math.floor(Math.random() * wordList.length)]
     currentRow = 0
     gamestate = true
     currentCol = 0
     const letterCards = document.querySelectorAll('.letter-card')
-    const keyboardKeys = document.querySelectorAll('.key-button')
-    // console.log(letterCards);
     letterCards.forEach(card => {
         card.textContent = ''
         card.removeAttribute('style')
     })
-    keyboardKeys.forEach(key => {
+    keys.forEach(key => {
         key.removeAttribute('style')
     })
     gameFeedback.textContent = ''
