@@ -141,7 +141,6 @@ const submitGuess = () => {
         }
     } else {
         gameFeedback.textContent = 'Word is not in the game'
-        gameFeedback.textContent = 'Please enter a five letters word'
         setTimeout(() => {
             gameFeedback.textContent = '';
         }, 3000);
