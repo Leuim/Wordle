@@ -75,7 +75,7 @@ const deleteLetter = () => {
 const validateGuess = (guess) => {
     const guessLetters = guess.split('')
     const randomWordLetters = randomWord.split('')
-    const similartyArray = ['absent', 'absent', 'absent', 'absent', 'absent']
+    const similartyPositions = ['absent', 'absent', 'absent', 'absent', 'absent']
     const letterCount = {};
     for (const char of randomWord) {
         letterCount[char] = (letterCount[char] || 0) + 1;
@@ -84,7 +84,7 @@ const validateGuess = (guess) => {
         const tile = document.querySelector(`#tile-${currentRow}-${index}`)
         if (letter === randomWordLetters[index]) {
             letterCount[letter]--
-            similartyArray[index] = 'correct'
+            similartyPositions[index] = 'correct'
             tile.style.backgroundColor = 'rgb(83, 141, 78)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
@@ -96,12 +96,12 @@ const validateGuess = (guess) => {
 
     guessLetters.forEach((letter, index) => {
         const tile = document.querySelector(`#tile-${currentRow}-${index}`)
-        if (similartyArray[index] === 'correct' || similartyArray[index] === 'present') {
+        if (similartyPositions[index] === 'correct' || similartyPositions[index] === 'present') {
             return
         }
         if (randomWordLetters.includes(letter) && letterCount[letter] > 0) {
             letterCount[letter]--
-            similartyArray[index] = 'present'
+            similartyPositions[index] = 'present'
             tile.style.backgroundColor = 'rgb(181, 159, 59)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
@@ -112,7 +112,7 @@ const validateGuess = (guess) => {
                 }
             })
         } else {
-            similartyArray[index] = 'absent'
+            similartyPositions[index] = 'absent'
             tile.style.backgroundColor = 'rgb(37, 37, 38)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
@@ -121,7 +121,7 @@ const validateGuess = (guess) => {
             })
         }
     })
-    gameEnd(similartyArray)
+    gameEnd(similartyPositions)
 }
 
 const submitGuess = () => {
@@ -147,9 +147,9 @@ const submitGuess = () => {
         }, 3000);
     }
 }
-const gameEnd = (similartyArray) => {
-    if (similartyArray.every(similarty => {
-        return similarty === 'correct'
+const gameEnd = (similartyPositions) => {
+    if (similartyPositions.every(similartyPosition => {
+        return similartyPosition === 'correct'
     }
     )) {
         if (currentRow + 1 === 1) {
