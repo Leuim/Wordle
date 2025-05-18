@@ -10,7 +10,9 @@
 // AS a user. I want to see feedback if I win/lose and how much tries I had left
 
 // Varibles
-import { guessableWords, wordList } from '/js/wordlist.js';
+// import { guessableWords, wordList } from '/js/wordlist.js';
+const guessableWords = ['SLEEP', 'SWEET','BANAL', 'EEOKE']
+const wordList = ['SWEET']
 
 const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
@@ -70,28 +72,37 @@ const validateGuess = (guess) => {
     const guessLetters = guess.split('')
     const randomWordLetters = randomWord.split('')
     const similartyArray = ['absent', 'absent', 'absent', 'absent', 'absent']
-    const obj = {};
-    for (const char of guess) {
-        obj[char] = (obj[char] || 0) + 1;
+    const letterCount = {};
+    for (const char of randomWord) {
+        letterCount[char] = (letterCount[char] || 0) + 1;
     }
-    
-    console.log(obj);
+    // console.log(letterCount);
     guessLetters.forEach((letter, index) => {
         const tile = document.querySelector(`#tile-${currentRow}-${index}`)
+        console.log(letter === randomWordLetters[index]);
         if (letter === randomWordLetters[index]) {
+            letterCount[letter]--
             similartyArray[index] = 'correct'
             tile.style.border = '1px solid rgb(126, 126, 126)'
-            tile.style.backgroundColor = 'rgb(83,141,78)'
+            tile.style.backgroundColor = 'rgb(83, 141, 78)'
             keys.forEach(key => {
                 if (key.textContent === letter) {
-                    key.style.backgroundColor = 'rgb(83,141,78)'
+                    key.style.backgroundColor = 'rgb(83, 141, 78)'
                 }
             })
-        } else if (randomWordLetters.includes(letter)) {
+        }
+    })
+
+    guessLetters.forEach((letter, index) =>{
+        const tile = document.querySelector(`#tile-${currentRow}-${index}`)
+        if(similartyArray[index] === 'correct' || similartyArray[index] === 'present'){
+            return
+        }
+        if(randomWordLetters.includes(letter) && letterCount[letter] > 0) {
+            letterCount[letter]--
             similartyArray[index] = 'present'
             tile.style.backgroundColor = 'rgb(181, 159, 59)'
             tile.style.border = '1px solid rgb(126, 126, 126)'
-
             keys.forEach(key => {
                 if (key.textContent === letter) {
                     const currentColor = window.getComputedStyle(key).backgroundColor
@@ -101,7 +112,7 @@ const validateGuess = (guess) => {
                     }
                 }
             })
-        } else if (!randomWordLetters.includes(letter)) {
+        } else {
             similartyArray[index] = 'absent'
             tile.style.backgroundColor = 'rgb(37, 37, 38)'
             tile.style.border = '1px solid rgb(126, 126, 126)'
