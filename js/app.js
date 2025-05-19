@@ -173,6 +173,7 @@ const handleKeyboardClick = (event) => {
         const verfiedKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         const pressedKey = event.key.toUpperCase()
         if (verfiedKeys.includes(pressedKey)) {
+            playClickSfx()
             handleKeyPress(pressedKey)
         } else if (pressedKey === 'BACKSPACE') {
             deleteLetter()
@@ -206,6 +207,11 @@ const handleRestart = () => {
     })
     gameFeedback.textContent = ''
     gameInfo.style.display = 'none'
+}
+
+const playClickSfx = () =>{
+    const audio = new Audio('../soundeffects/click.wav')
+    audio.play()
 }
 // eventlisteners
 keys.forEach(key => {
