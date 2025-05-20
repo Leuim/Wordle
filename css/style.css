@@ -77,10 +77,6 @@ body {
     margin: 0 5px 0 0;
 }
 
-#logo:hover {
-    cursor: pointer;
-}
-
 #main-title {
     font-size: 16px;
     color: whitesmoke;

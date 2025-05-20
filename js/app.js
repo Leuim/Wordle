@@ -210,8 +210,8 @@ const handleRestart = () => {
 }
 
 const playClickSfx = () =>{
-    const audio = new Audio('../soundeffects/click.wav')
-    audio.play()
+    const audio = new Audio('/Wordle/soundeffects/click.wav')
+    audio.play().catch(err => console.error('Error playing audio:', err));
 }
 // eventlisteners
 keys.forEach(key => {
