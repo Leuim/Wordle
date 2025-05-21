@@ -1,5 +1,5 @@
 # **Wordle** 
-![Game page](https://imgur.com/a/zn11iRZ)
+![Game page](https://i.imgur.com/3msrUXj.png)
 ## What is Wordle?
 **Wordle** is a puzzle game where you try to guess a random 5 letters word to find the correct one. It challenges you to find it in six attempts, the letters are highlighted with 3 different colors each color indicates the letter relationship with the correct word 
 * **Green**: The letter is correct and in the right position
