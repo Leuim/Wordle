@@ -11,7 +11,6 @@
 
 // Varibles
 import { guessableWords, wordList } from './wordlist.js';
-
 const gameBoard = [['', '', '', '', ''],
 ['', '', '', '', ''],
 ['', '', '', '', ''],
@@ -34,7 +33,6 @@ const exitTutorialButton = document.querySelector('#exit-tutorial')
 const gameTutorial = document.querySelector('#game-tutorial-container')
 const resetButton = document.querySelector('#reset-game')
 // functions
-console.log(randomWord)
 const handleKeyPress = (keyValue) => {
     if (gamestate) {
         if (keyValue === 'DELETE') {
@@ -42,6 +40,7 @@ const handleKeyPress = (keyValue) => {
         } else if (keyValue === 'ENTER') {
             submitGuess()
         } else if (currentCol < 5) {
+            playClickSfx()
             const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
             gameBoard[currentRow][currentCol] = keyValue
             tile.textContent = keyValue
@@ -58,6 +57,7 @@ const handleKeyPress = (keyValue) => {
 }
 
 const deleteLetter = () => {
+    playDeleteSfx()
     if (currentCol > 0) {
         currentCol--
         const tile = document.querySelector(`#tile-${currentRow}-${currentCol}`)
@@ -151,6 +151,7 @@ const gameEnd = (similartyPositions) => {
         return similartyPosition === 'correct'
     }
     )) {
+        playWinSfx()
         if (currentRow + 1 === 1) {
             gameOutcome.textContent = `Congrats you won in ${currentRow + 1} attempt`;
             gamestate = false;
@@ -173,7 +174,6 @@ const handleKeyboardClick = (event) => {
         const verfiedKeys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         const pressedKey = event.key.toUpperCase()
         if (verfiedKeys.includes(pressedKey)) {
-            playClickSfx()
             handleKeyPress(pressedKey)
         } else if (pressedKey === 'BACKSPACE') {
             deleteLetter()
@@ -193,7 +193,6 @@ const exitTutorial = () => {
 
 const handleRestart = () => {
     randomWord = wordList[Math.floor(Math.random() * wordList.length)]
-    console.log(randomWord)
     currentRow = 0
     gamestate = true
     currentCol = 0
@@ -211,7 +210,16 @@ const handleRestart = () => {
 
 const playClickSfx = () =>{
     const audio = new Audio('/Wordle/soundeffects/click.wav')
-    audio.play().catch(err => console.error('Error playing audio:', err));
+    audio.play()
+}
+
+const playDeleteSfx = () =>{
+    const audio = new Audio('/Wordle/soundeffects/delete.wav')
+    audio.play()
+}
+const playWinSfx = () =>{
+    const audio = new Audio('/Wordle/soundeffects/win.wav')
+    audio.play()
 }
 // eventlisteners
 keys.forEach(key => {
