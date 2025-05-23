@@ -444,10 +444,12 @@ h2 {
     #game-feedback {
         font-size: 10px;
     }
-    #game-outcome{
+
+    #game-outcome {
         font-size: 14px;
     }
-    #reset-game{
+
+    #reset-game {
         font-size: 14px;
     }
 }
